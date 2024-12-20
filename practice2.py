@@ -193,13 +193,212 @@ profile("유재석", 45,"c","c++","c#")
 #지역변수(함수 내에서만 쓸 수 있다.)와 전역변수(프로그램 내에 어디서든 쓸 수 있다.)
 
 #지역변수 
-gun=10
-def checkpoint(soldiers):
-    gun=20
-    print("남은 총:{0}자루.".format(gun-soldiers))# 함수 내부의 문장은 외부의 변수를 쓸 수 없음 따라서 내부에 안 만들면 오류 뜸.
-print("전체 총:{0}".format(gun)) #함수 외부임(띄어쓰기 없쥬??) 따라서 함수 외부인 총=10을 따름
-checkpoint(2)
-print("총:{0}".format(gun))#야도 외부인 건 마찬가지.
+# gun=10
+# def checkpoint(soldiers):
+#     gun=20
+#     print("남은 총:{0}자루.".format(gun-soldiers))# 함수 내부의 문장은 외부의 변수를 쓸 수 없음 따라서 내부에 안 만들면 오류 뜸.
+# print("전체 총:{0}".format(gun)) #함수 외부임(띄어쓰기 없쥬??) 따라서 함수 외부인 총=10을 따름
+# checkpoint(2)
+# print("총:{0}".format(gun))#야도 외부인 건 마찬가지.
 
 #전역변수
+# gun=10
+# def checkpoint(soldiers):
+#     global gun
+#     gun=gun-soldiers
+#     print("남은 총:{0}".format(gun))
+# checkpoint(2)
 
+#체크포인트 리턴
+
+def checkpoint(gun,soldiers):
+    print("남은 총:{0}".format(gun-soldiers))
+    return gun-soldiers
+gun=10
+gun=checkpoint(gun,2)
+print(gun)
+
+#표준 입출력
+print("python", "java",sep=" vs ",end=" ")
+print("무엇이 더 재밌을 까요?")
+
+import sys
+print("python","java", file=sys.stdout) #이건 더 알아보자.
+print("python","java", file=sys.stderr)
+
+scores={"수학":0, "영어":50, "코딩":100}
+for subject,score in scores.items():
+    print(subject.ljust(4),str(score).rjust(8),sep=":")
+
+for num in range(1,21):
+   # print("대기번호:"+str(num).zfill(3)) #3칸을 만들고 빈 공간에는 0으로 채운다.
+    print("대기번호:{0}".format(str(num).zfill(3))) #zfill이 문자 메서드 따라서 str을 num에 붙인다.
+#표준입력
+# ans=input("아무 말이나 해보든가.")
+# print("넌 {0}라고 했구나.".format(ans)) # input의 값은 숫자든 문자든 다 str, 즉 문자형태로 나온다.
+# print(type(ans))
+
+#다양한 출력포멧
+
+print("{0: >10}".format(500))
+print("{0: >+10}".format(500)) #양,음
+print("{0:_<+10}".format(500))
+print("{0:,}".format(100000000000000)) #3자리마다 ,찍기
+print("{0:+,}".format(100000000000000)) #3자리마다 ,찍기, 양음 
+# 3자리 콤마, 부호, 자릿수, 빈 자리는 ^
+print("{0:^<+30,}".format(100000000000000000)) #숫자 쓸거면  숫자 앞자리는 다 채워야 이상하게 안 됨.
+
+#소수점 출력
+print("{0:f}".format(5/3))
+print("{0:.2f}".format(5/3))#특정 소수점까지만 출력.
+
+#파일 입출력
+score_file=open("score", "w", encoding="utf8")
+print("영어:0",file=score_file)
+print("수학:50",file=score_file)
+score_file.close
+
+score_file=open("score", "a",encoding="utf8")
+score_file.write("과학:100\n")
+score_file.write("코딩:100")
+score_file.close
+
+score_file=open("score", "r", encoding="utf8")
+print(score_file.read()) #모두 출력한다.
+score_file.close
+
+score_file=open("score", "r", encoding="utf8")
+print(score_file.readline(),end="") # 줄별로 읽기, 한 줄 읽고 커서는 다음 줄로 이동
+print(score_file.readline(),end="")
+print(score_file.readline(),end="")
+print(score_file.readline())
+score_file.close
+
+score_file=open("score", "r", encoding="utf8")
+while True:
+    line=score_file.readline()
+    if not line: #not도 알아두자
+        break
+    print(line,end="") #,end는 쓰는 명령문에만 넣자.
+score_file.close
+
+score_file=open("score", "r", encoding="utf8")
+lines=score_file.readlines() #야는 특별히 리스트로 저장되는 형식.
+for line in lines: #리스트를 문자열로 바꾼다.
+    print(line,end="")
+
+#pickle
+import pickle #데이터를 파일 형태로 저장한다. 우린 볼 수 없다.
+profile_file=open("profile","wb") # 얘는 b를 꼭 써주고 encoding="utf8"은 안 쓴다.
+profile={"이름":"권동욱","나이":19,"취미":["코딩","운동"]}
+print(profile)
+pickle.dump(profile,profile_file) #dump가 내놓다 데이터를 내놓다.
+profile_file.close()
+
+profile_file=open("profile","rb")
+profile=pickle.load(profile_file) # 파일에 저장된 값을 불러와 프로필이라는 변수에 저장. load가 태우다. 기져오다 파일을 데이터로 가져오다.
+print(profile)
+profile_file.close
+
+#with 이걸 쓰면 파일 입출력을 좀 더 편하게 할 수 있다.
+import pickle
+with open("profile","rb") as profile_file:
+    print(pickle.load(profile_file))
+
+with open("study","w",encoding="utf8") as study_file:
+    study_file.write("파이썬을 공부하다.")
+
+with open("study", "r", encoding="utf8") as study_file:
+    print(study_file.read())
+
+with open("profile", "rb") as profile_file:
+    print(pickle.load(profile_file))
+
+#클래스
+#마린: 공격 유닛, 군인, 총 씀
+# name="마린"
+# hp=40
+# damage=5
+# print("{0}유닛이 생성되었습니다.".format(name))
+# print("체력:{0}\n공격력:{1}".format(hp, damage))
+
+# #탱크:공격 유닛, 탱크, 포를 씀, 일반 모드/ 시즈 모드 
+# name_tank="탱크"
+# hp_tank=150
+# damage_tank=30
+# print("{0}유닛이 생성되었습니다.".format(name_tank))
+# print("체력:{0}\n공격력:{1}".format(hp_tank, damage_tank))
+
+# import sys
+# def attack(name, location, damage):
+#     print("{0}:{1}시 방향으로 적군을 향해 공격합니다.[공격력:{2}]".format(name , location, damage))
+# location=int(input("마린, 몇 시 방향을 공격하시겠습니까?"))
+# if location>24:
+#     print("다시 입력해주세요.")
+#     sys.exit()
+# attack(name, location, damage )
+
+# location=int(input("탱크, 몇 시 방향을 공격하시겠습니까?"))
+# if location>24:
+#     print("다시 입력해주세요.")
+#     sys.exit()
+
+# attack(name_tank, location, damage_tank) #이거 넘 번거로움 따라서 클래스가 있음.
+
+#클래스는 붕어빵 틀과 같이 만들어 내는 것.-----------------------------------------이건 좀 더 알아보고 공부하기
+# class 
+# class unit: #여기선 unit이 함수를 부를 때 사용된다.
+#     def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
+#         self.name=name
+#         self.hp=hp
+#         self.damage=damage
+#         print("{0}유닛이 생성되었습니다.".format(self.name))
+#         print("체력:{0}, 공격력:{1}".format(self.hp, self.damage))
+
+# marine1= unit("마린", 40, 5) #객체는 __init__ 뒤에 있는 함수 모두를 포함해야 한다.(self제외)
+# marine2= unit("마린", 40, 5)
+# tank= unit("탱크", 150, 35)
+
+# #멤버 변수(self.name=name, self.hp=hp 이런것들 class내의 것을 외부에서 쓴다.)
+
+# #레이스: 공중 유닛, 비행기, 스텔스
+# wraith1= unit("레이스", 80, 5)
+# print("유닛 이름:{0}, 공격력:{1}".format(wraith1.name, wraith1.damage)) #함수를 부르는 게 아닌 클래스 함수 내 변수를 이용한다.  
+
+# #마인드 컨트롤 : 상대방 유닛을 내것으로 만든다. (빼앗음)
+# wraith2=unit(" 빼앗은 레이스", 80, 5)
+# wraith2.clocking=True #클래스 외부에서 내부의 변수를 확장했다.(name)
+
+# if wraith2.clocking== True:
+#     print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
+
+#메소드 
+class unit: #여기선 unit이 함수를 부를 때 사용된다.
+    def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
+        self.name=name
+        self.hp=hp
+        self.damage=damage
+        print("{0}유닛이 생성되었습니다.".format(self.name))
+        print("체력:{0}, 공격력:{1}".format(self.hp, self.damage))
+class attackunit:
+    def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
+        self.name=name # 함수에서 name의 값을 self에 넘긴다는 뜻.
+        self.hp=hp
+        self.damage=damage
+    
+    def attack(self,location): #얘는 어택 유닛 클래스에 포함된다.
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage)) #self가 있는 name과 damage는 클래스 내부 self변수를 이용히겠고 self가 없는 location은  함수 내에 변수를 이용하겠다.self는 클래스꺼다 클래스 안에서는 함수가 달라도 쓸 수 있다.
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+
+#파이어 벳 : 공격 유닛, 불을 뿜음
+firebat1= attackunit("파이어 벳", 50, 16) #어택유닛 클래스로 지정
+firebat1.attack(1) #어택 함수로 지정
+
+firebat1.damaged(25)# 데미지드 함수로 지정
+firebat1.damaged(25)
