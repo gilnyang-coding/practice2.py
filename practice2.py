@@ -372,7 +372,7 @@ with open("profile", "rb") as profile_file:
 # if wraith2.clocking== True:
 #     print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
 
-#메소드 
+#메소드(일반 유닛) 
 class unit: #여기선 unit이 함수를 부를 때 사용된다.
     def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
         self.name=name
@@ -396,9 +396,233 @@ class attackunit:
         if self.hp<=0:
             print("{0}:파괴되었습니다.".format(self.name))
 
+
 #파이어 벳 : 공격 유닛, 불을 뿜음
 firebat1= attackunit("파이어 벳", 50, 16) #어택유닛 클래스로 지정
 firebat1.attack(1) #어택 함수로 지정
 
 firebat1.damaged(25)# 데미지드 함수로 지정
 firebat1.damaged(25)
+
+#상속
+class unit: #name과 hp는 unit과 attackunit모두 있어 상속이 가능하다. 
+    def __init__(self, name, hp): 
+        self.name=name
+        self.hp=hp
+        print("{0}유닛이 생성되었습니다.".format(self.name))        
+
+class attackunit(unit): #괄호 안의 클래스를 상속받아 어택유닛을 만든다는 의미이다.
+    def __init__(self, name, hp, damage): 
+        unit.__init__(self,name,hp) #상속 받을 변수 설정.
+        self.damage=damage
+    
+    def attack(self,location):
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage))
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+#매딕: 의무병.
+madic= unit("매딕", 40)
+
+
+
+firebat1= attackunit("파이어 벳", 50, 16) #어택유닛 클래스로 지정
+firebat1.attack(1) #어택 함수로 지정
+
+firebat1.damaged(25)# 데미지드 함수로 지정
+firebat1.damaged(25)
+
+#다중 상속
+class unit: #name과 hp는 unit과 attackunit모두 있어 상속이 가능하다. 
+    def __init__(self, name, hp): 
+        self.name=name
+        self.hp=hp
+        print("{0}유닛이 생성되었습니다.".format(self.name))        
+
+class attackunit(unit): #괄호 안의 클래스를 상속받아 어택유닛을 만든다는 의미이다.
+    def __init__(self, name, hp, damage): 
+        unit.__init__(self,name,hp) #상속 받을 변수 설정.
+        self.damage=damage
+        print("{0}".format(name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력됨.
+    
+    def attack(self,location):
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage))
+        print("{0}".format(self.name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력 안 됨.
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+
+#드랍쉽: 공중 유닛, 수송기, 공격 불가.
+
+class flyable:
+    def __init__(self,flying_speed):
+        self.flying_speed =flying_speed
+
+    def fly(self, name, location):
+        print("{0}:{1}시 방향으로 날아갑니다. [속도:{2}]".format(name, location, self.flying_speed))
+
+#공중 공격 유낫
+class flyable_attack_unit(attackunit, flyable):
+    def __init__(self,name, hp, damage, flying_speed):
+        attackunit.__init__(self,name, hp, damage)
+        flyable.__init__(self, flying_speed)
+
+#발키리: 공중 공격 유닛, 한 번에 14발 발사.
+valkyrie= flyable_attack_unit("발키리", 200, 6, 5) #*여기서 두 클래스 어택 유닛과 플라이어블에 바로 밑 ,즉 어택유닛클래스의 init 플라이어블 클래스의init에만 적용된다.* 따라서 어택 유닛 클래스에 어택 함수에는 print가 있어도 출력되지 않는다.
+valkyrie.fly(valkyrie.name, 1) #여기선 valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해  플라이어블 클래스에는는 비행 속도 변수만 저장된다. 따라서 이름을 정해준다.
+valkyrie.attack(1)
+
+#메소드 오버라이딩.
+class unit: #name과 hp는 unit과 attackunit모두 있어 상속이 가능하다. 
+    def __init__(self, name, hp): 
+        self.name=name
+        self.hp=hp
+        print("{0}유닛이 생성되었습니다.".format(self.name))        
+
+class attackunit(unit): #괄호 안의 클래스를 상속받아 어택유닛을 만든다는 의미이다.
+    def __init__(self, name, hp, damage): 
+        unit.__init__(self,name,hp) #상속 받을 변수 설정.
+        self.damage=damage
+        print("{0}".format(name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력됨.
+    
+    def attack(self,location):
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage))
+        print("{0}".format(self.name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력 안 됨.
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+
+#드랍쉽: 공중 유닛, 수송기, 공격 불가.
+
+class flyable:
+    def __init__(self,flying_speed):
+        self.flying_speed =flying_speed
+
+    def fly(self, name, location):
+        print("{0}:{1}시 방향으로 날아갑니다. [속도:{2}]".format(name, location, self.flying_speed))
+
+#공중 공격 유낫
+class flyable_attack_unit(attackunit, flyable):
+    def __init__(self,name, hp, damage, flying_speed):
+        attackunit.__init__(self,name, hp, damage)
+        flyable.__init__(self, flying_speed)
+
+#발키리: 공중 공격 유닛, 한 번에 14발 발사.
+valkyrie= flyable_attack_unit("발키리", 200, 6, 5) #*여기서 두 클래스 어택 유닛과 플라이어블에 바로 밑 ,즉 어택유닛클래스의 init 플라이어블 클래스의init에만 적용된다.* 따라서 어택 유닛 클래스에 어택 함수에는 print가 있어도 출력되지 않는다.
+valkyrie.fly(valkyrie.name, 1) #여기선 valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해  플라이어블 클래스에는는 비행 속도 변수만 저장된다. 따라서 이름을 정해준다.
+valkyrie.attack(1)
+
+#메소드 오버라이딩.
+class unit: #name과 hp는 unit과 attackunit모두 있어 상속이 가능하다. 
+    def __init__(self, name, hp): 
+        self.name=name
+        self.hp=hp
+        print("{0}유닛이 생성되었습니다.".format(self.name))        
+
+class attackunit(unit): #괄호 안의 클래스를 상속받아 어택유닛을 만든다는 의미이다.
+    def __init__(self, name, hp, damage): 
+        unit.__init__(self,name,hp) #상속 받을 변수 설정.
+        self.damage=damage
+        print("{0}".format(name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력됨.
+    
+    def attack(self,location):
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage))
+        print("{0}".format(self.name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력 안 됨.
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+
+#드랍쉽: 공중 유닛, 수송기, 공격 불가.
+
+class flyable:
+    def __init__(self,flying_speed):
+        self.flying_speed =flying_speed
+
+    def fly(self, name, location):
+        print("{0}:{1}시 방향으로 날아갑니다. [속도:{2}]".format(name, location, self.flying_speed))
+
+#공중 공격 유낫
+class flyable_attack_unit(attackunit, flyable):
+    def __init__(self,name, hp, damage, flying_speed):
+        attackunit.__init__(self,name, hp, damage)
+        flyable.__init__(self, flying_speed)
+
+#발키리: 공중 공격 유닛, 한 번에 14발 발사.
+valkyrie= flyable_attack_unit("발키리", 200, 6, 5) #*여기서 두 클래스 어택 유닛과 플라이어블에 바로 밑 ,즉 어택유닛클래스의 init 플라이어블 클래스의init에만 적용된다.* 따라서 어택 유닛 클래스에 어택 함수에는 print가 있어도 출력되지 않는다.
+valkyrie.fly(valkyrie.name, 1) #여기선 valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해  플라이어블 클래스에는는 비행 속도 변수만 저장된다. 따라서 이름을 정해준다.
+valkyrie.attack(1)
+
+#메소드 오버라이딩. 자식 클래스의 메소드를 쓰고 싶을 때 쓴다.
+class unit: #name과 hp는 unit과 attackunit모두 있어 상속이 가능하다. 
+    def __init__(self, name, hp, speed): 
+        self.name=name
+        self.hp=hp
+        self.speed=speed
+    def move(self, location):
+        print("[지상 유닛 이동]")
+        print("{0}:{1}시 방행으로 이동합니다. [이동 속도:{2}]".format(self.name, location, self.speed))        
+
+class attackunit(unit): #괄호 안의 클래스를 상속받아 어택유닛을 만든다는 의미이다.
+    def __init__(self, name, hp, speed, damage): 
+        unit.__init__(self,name,hp, speed) #상속 받을 변수 설정.
+        self.damage=damage
+        print("{0}".format(name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력됨.
+    
+    def attack(self,location):
+        print("{0}:{1}시 방향으로 적군을 공격합니다.[공격력:{2}]".format(self.name, location, self.damage))
+        print("{0}".format(self.name)) #valkyrie= flyable_attack_unit("발키리", 200, 6, 5)에 의해 출력 안 됨.
+
+    def damaged(self,damaged):
+        print("{0}:{1}데미지를 입었습니다.".format(self.name, damaged))
+        self.hp-=damaged
+        print("{0}:현재 체력은 {1}입니다.".format(self.name, self.hp))
+        if self.hp<=0:
+            print("{0}:파괴되었습니다.".format(self.name))
+
+#드랍쉽: 공중 유닛, 수송기, 공격 불가.
+
+class flyable:
+    def __init__(self,flying_speed):
+        self.flying_speed =flying_speed
+
+    def fly(self, name, location):
+        print("{0}:{1}시 방향으로 날아갑니다. [속도:{2}]".format(name, location, self.flying_speed))
+
+#공중 공격 유닛닛
+class flyable_attack_unit(attackunit, flyable):
+    def __init__(self,name, hp, damage, flying_speed):
+        attackunit.__init__(self,name, hp, 0,  damage) # 지상 이동 속도=0
+        flyable.__init__(self, flying_speed)
+    
+    def move(self, location): # self하고 ,는 나머지 모두 .은 각각 하나만 있고 self를 적용할 떄도 나머지 모두이기에 , 를 쓴다.
+        print("[공중 유닛 이동]")
+        self.fly(self.name, location) # 이러면 그냥 move만 써도 공중 유닛 이동이 된다. 메소드 오버로딩. 지상은 유닛 클래스에만 있어 [지상 유닛 이동]이라고 뜨는데 공중 클래스의 유닛은 함수가 다시 재정의 되어 [공중 유닛 이동]이라고 뜬다. 
+
+
+# 벌처: 지상 유닛, 기동성 좋음
+vulture= attackunit("벌처",80, 10, 20)
+vulture.move(11)
+# 배틀크루저:공중 유닛
+battlecruiser= flyable_attack_unit("배틀 크루저", 500, 25, 3)
+battlecruiser.fly(battlecruiser.name,9) 
+battlecruiser.move(9) #공중 유닛은 플라이 함수 지상 유닛은 무브 함수라 귀찮다. 따라서 매소드 오버라이딩을 쓴다.
+
+
+
+
