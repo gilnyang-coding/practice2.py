@@ -604,7 +604,7 @@ class flyable:
     def fly(self, name, location):
         print("{0}:{1}시 방향으로 날아갑니다. [속도:{2}]".format(name, location, self.flying_speed))
 
-#공중 공격 유닛닛
+#공중 공격 유닛.
 class flyable_attack_unit(attackunit, flyable):
     def __init__(self,name, hp, damage, flying_speed):
         attackunit.__init__(self,name, hp, 0,  damage) # 지상 이동 속도=0
@@ -621,8 +621,25 @@ vulture.move(11)
 # 배틀크루저:공중 유닛
 battlecruiser= flyable_attack_unit("배틀 크루저", 500, 25, 3)
 battlecruiser.fly(battlecruiser.name,9) 
-battlecruiser.move(9) #공중 유닛은 플라이 함수 지상 유닛은 무브 함수라 귀찮다. 따라서 매소드 오버라이딩을 쓴다.
+battlecruiser.move(9) #공중 유닛은 플라이 함수 지상 유닛은 무브 함수라 귀찮다. 따라서 매소드 오버라이딩을 쓴다. 또한 무브 함수에 네임이 있으니 네임을 따로 지정할 필욘 없다.
 
+#pass: 일단 아무것도 안 하고 넘어가기.
+class buildingunit(unit):
+    def __init__(self, name, hp, location):
+        pass
 
+#서플라이 디폿: 건물, 1개 건물이 유닛 8만큼 만든다.
+supply_depot=buildingunit("서플라이 디폿", 500, 7)
+
+#super
+class buildingunit(unit):
+    def __init__(self, name, hp, location):
+        unit.__init__(self, name, hp, 0) #이걸 super로 쓴다.
+        self.location=location
+
+class buildingunit(unit):
+    def __init__(self, name, hp, location):
+        super().__init__(name, hp, 0) #super를 쓸 때는 self를 안 쓴다. 또한 다중 상속에서는 맨 처음 예를 들자면 class flyable_attack_unit(attackunit, flyable):에선 어택유닛만(맨 처음) 호출된다.
+        self.location=location
 
 
