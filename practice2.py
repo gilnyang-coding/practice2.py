@@ -643,3 +643,28 @@ class buildingunit(unit):
         self.location=location
 
 
+#예외처리
+try:
+    print("나누기 전용 계산기")
+    num=[]
+    num.append(int(input("첫번째 숫자를 입력하시오.")))
+    num.append(int(input("두번째 숫자를 입력하시오.")))
+    num.append("{0}".format(num[0]/num[1]))
+    print("{0}".format(num[0]/num[1]))
+except ValueError:
+    print("숫자를 적으시오.")
+except ZeroDivisionError:
+    print("0으로 못 나눈다.")
+except:
+    print("알 수 없는 오류 발생") #저 두 가지 오류 외의 것을 다룬다.
+
+#에러 발생시키기.
+try:
+    print("한 자리 숫자 전용 계산기")
+    num1=int(input("숫자를 입력하세요."))
+    num2=int(input("숫자를 입력하세요."))
+    if num1>9 or num2>9:
+        raise ValueError #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
+    print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+except ValueError: #오류가 났을 때 이것을 실행한다.
+    print("잘못된 값을 입력했습니다.")
