@@ -644,27 +644,104 @@ class buildingunit(unit):
 
 
 #예외처리
-try:
-    print("나누기 전용 계산기")
-    num=[]
-    num.append(int(input("첫번째 숫자를 입력하시오.")))
-    num.append(int(input("두번째 숫자를 입력하시오.")))
-    num.append("{0}".format(num[0]/num[1]))
-    print("{0}".format(num[0]/num[1]))
-except ValueError:
-    print("숫자를 적으시오.")
-except ZeroDivisionError:
-    print("0으로 못 나눈다.")
-except:
-    print("알 수 없는 오류 발생") #저 두 가지 오류 외의 것을 다룬다.
+# try:
+#     print("나누기 전용 계산기")
+#     num=[]
+#     num.append(int(input("첫번째 숫자를 입력하시오.")))
+#     num.append(int(input("두번째 숫자를 입력하시오.")))
+#     num.append("{0}".format(num[0]/num[1]))
+#     print("{0}".format(num[0]/num[1]))
+# except ValueError:
+#     print("숫자를 적으시오.")
+# except ZeroDivisionError:
+#     print("0으로 못 나눈다.")
+# except:
+#     print("알 수 없는 오류 발생") #저 두 가지 오류 외의 것을 다룬다.
 
 #에러 발생시키기.
-try:
-    print("한 자리 숫자 전용 계산기")
-    num1=int(input("숫자를 입력하세요."))
-    num2=int(input("숫자를 입력하세요."))
-    if num1>9 or num2>9:
-        raise ValueError #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
-    print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
-except ValueError: #오류가 났을 때 이것을 실행한다.
-    print("잘못된 값을 입력했습니다.")
+# try:
+#     print("한 자리 숫자 전용 계산기")
+#     num1=int(input("숫자를 입력하세요."))
+#     num2=int(input("숫자를 입력하세요."))
+#     if num1>9 or num2>9:
+#         raise ValueError #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
+#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+# except ValueError: #오류가 났을 때 이것을 실행한다.
+#     print("잘못된 값을 입력했습니다.")
+
+#사용자 정의 예외 처리(위의 것들은 이미 있는 에러 처리임 이건 없는 걸 사용자가 직접 정의한다.) 여기선 bignumberError
+#1-1 여기선 밸류오류에서 아무 변수를 안 부르니 바로 int를 붙여도 된다.
+# class bignumberError(Exception): #exception이 사용자 예외 처리를 쓴다는 의미이다.
+#     def __init__(self,m):
+#         self.m=m
+    
+#     def __str__(self):
+#         return self.m
+
+# try:
+#     print("한 자리 숫자 전용 계산기")
+#     num1=int(input("숫자를 입력하세요."))
+#     num2=int(input("숫자를 입력하세요."))
+
+    
+    
+#     if num1>9 or num2>9:
+#         raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
+#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+# except bignumberError as err: #오류가 났을 때 이것을 실행한다.
+#     print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
+#     print(err)
+# except ValueError: #오류가 났을 때 이것을 실행한다.
+#     print("잘못된 값을 입력했습니다.")
+
+#1-2 여기선 밸류에러에 초기값을 부르는데 초기값에서 int를 input에 붙이고 문자를 쓰면 바로 오류가 나 문자가 저장되진 않는다. 즉, 초기값이 없다는 뜻이다. 근데 밸류오류에선 부르고 있으니 그냥 코드가 실행되지 않는다.
+# class bignumberError(Exception):
+#     def __init__(self,m):
+#         self.m=m
+    
+#     def __str__(self): #Exception은 기본적으로 str을 갖고 있어 이건 없어도 되지만 기억은 해둘 것. str은은 bignumberError를 부를 때 처름부터 같이 나옴. 
+#         return self.m
+
+
+# try:
+#     print("한 자리 숫자 전용 계산기")
+#     num1=(input("숫자를 입력하세요."))
+#     num2=(input("숫자를 입력하세요."))
+    
+#     num1=int(num1)
+#     num2=int(num2)
+
+
+#     if num1>9 or num2>9:
+#         raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다고 클래스의 exception에서 정의하고 bignumberError 함수를 부른다. 
+#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+# except bignumberError as err: #init에 저장한 것을 불러온다.
+#     print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
+#     print(err) # bignumberError의 ()안을 출력한다.
+# except ValueError: #오류가 났을 때 이것을 실행한다.
+#     print("잘못된 값을 입력했습니다. 입력값:{0}, {1}".format(num1,num2))
+# #finally(예외 구문에서 실행이 되건 오류가 나건 무조건 실행된다.)
+# finally:
+#     print("이용해주셔서 감사합니다.")
+
+#-----------------------------------------------------------------------------------------------------------------------------
+ 
+#모듈(필요한 파일끼리 부품처럼 만들어진 것, 필요한 것만 고칠 수 있으며, 같은 언어끼리만 가능하다. ex)python) 파일 뒤에 .py붙여진 것것
+# import theater_modeule
+# theater_modeule.price(3)
+# theater_modeule.price_moring(4)
+# theater_modeule.price_soldier(5)
+
+# import theater_modeule as mv #별명을 붙여 쉽게 쓴다.
+# mv.price_soldier(10)
+
+# from theater_modeule import* #그냥 모든 것을 쓰겠다는 의미.
+# price_soldier(9)
+
+# from theater_modeule import price, price_moring #이 두 개만 쓰라는 의미.
+# price(3)
+# price_moring(2)
+# #price_soldier(5) 이건 오류남.
+
+from theater_modeule import price_soldier as sd #이것도 별명을 붙인다.
+sd(3) 
