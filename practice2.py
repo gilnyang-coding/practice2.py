@@ -745,3 +745,34 @@ class buildingunit(unit):
 
 from theater_modeule import price_soldier as sd #이것도 별명을 붙인다.
 sd(3) 
+
+# #패키지(모듈들을 모아놓은 집합.)
+# import Travel.Thailand #여기는 파일이나 폴더만 가능하고 클래스나 함수는 불러올 수 없다.
+# trip_to= Travel.Thailand.ThailandPackage()
+# trip_to.detail() 
+
+# from Travel.Thailand import ThailandPackage #이거는 클래스를 불러올 수 있다.
+# trip_to=ThailandPackage()
+# trip_to.detail()
+
+# from Travel.Vietnam import VietnamPackage
+# trip_to=VietnamPackage()
+# trip_to.detail()
+
+# __all__ (import*를 쓸 때 사용할 모듈을 정하는 것.)
+from Travel import* #from을 쓰면 폴더는 코드에 안 적네.
+trip_to=Vietnam.VietnamPackage()
+trip_to.detail()
+trip_to=Thailand.ThailandPackage()
+trip_to.detail()
+
+#모듈 직접 실행.(타일랜드 파일 참조)
+
+#패키지, 모듈 위치.
+import inspect
+print(inspect.getfile(Thailand)) #이러면 파일 위치를 출력값으로 알려준다.
+print(inspect.getfile(Vietnam))
+
+#pip install(패키지 설치하기. 구글에 pypi검색
+
+#내장 함수
