@@ -775,4 +775,47 @@ print(inspect.getfile(Vietnam))
 
 #pip install(패키지 설치하기. 구글에 pypi검색
 
-#내장 함수
+#내장 함수(파이썬 내부에 있는 함수.)
+
+
+#L=input("무슨 언어를 좋아하세요?")
+#dir: 어떤 객체를 넘겼을 떄 그 객체가 무슨 변수와 함수를 가지고 있는지 표시
+import random
+print(dir()) #무슨 함수를 쓸 수 있는지. 구글에 ~~ of python builtins라고 치면 나옴 ~~list rnadom 등등
+import pickle
+print(dir())
+print(dir(random))
+
+
+#외장 함수. 구글에 list of python modules라고 검색
+#glob: 경로 내의 폴더, 파일 목록 조회
+import glob 
+print(glob.glob("*.py")) #확장자가 .py인 모든 파일 
+
+#os: 운영체제에서 제공하는 기본 기능
+import os 
+print(os.getcwd()) #현재 폴더 알려줌
+
+# folder= "sample_dir"
+# if os.path.exists(folder):
+#     print("이미 존재하는 폴더입니다.")
+#     os.rmdir(folder)
+#     print("{0} 폴더를 삭제하였습니다.".format(folder))
+# else:
+#     os.makedirs(folder)
+#     print("{0} 폴더를 생성하였습니다.".format(folder))
+
+print(os.listdir())
+
+#time:시간 관련 함수
+import time
+print(time.localtime())
+print(time.strftime("%y-%m-%d %H:%M:%S"))
+
+import datetime
+print("오늘 날짜는", datetime.date.today())
+
+#timedelta: 두 날찌 사이의 간격
+today=datetime.date.today()
+td=datetime.timedelta(days=100)
+print("우리가 만난지 100일 후는",today+td)
