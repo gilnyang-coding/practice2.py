@@ -20,26 +20,26 @@ else:
     print("준비물은 필요 없어요.")
 
 #사람의 값을 기다리는 input
-# weather=input("오늘 날씨는 어떄요?")
-# if weather=="비":
-#     print("우산을 챙기세요") #만약 비가 아니라면 아무것도 출력되지 않는다.
-# elif weather=="미세먼지": 
-#     print("미스크를 챙기세요.")
-# else:
-#     print("준비물은 필요 없어요.")
-# # 두 가지 경우
-# weather="눈"
-# if weather=="비" or "눈":
-#     print("우산을 챙기세요.")
-# temp=int(input("오늘 날씨 몇 도예요?"))
-# if temp>=30:
-#     print("너무 덥네요. 나가지 말아요")
-# elif temp<30 and temp>10:
-#     print("날씨 좋네요. 나가 놀아요")
-# elif temp<=10 and temp>0: #또는 바로 0<temp<10으로 쓸 수 있다.
-#     print("쌀쌀하네요. 외투를 챙겨요.")
-# else:
-#     print("너무 추워요. 나가지 말아요.")
+weather=input("오늘 날씨는 어떄요?")
+if weather=="비":
+    print("우산을 챙기세요") #만약 비가 아니라면 아무것도 출력되지 않는다.
+elif weather=="미세먼지": 
+    print("미스크를 챙기세요.")
+else:
+    print("준비물은 필요 없어요.")
+# 두 가지 경우
+weather="눈"
+if weather=="비" or "눈":
+    print("우산을 챙기세요.")
+temp=int(input("오늘 날씨 몇 도예요?"))
+if temp>=30:
+    print("너무 덥네요. 나가지 말아요")
+elif temp<30 and temp>10:
+    print("날씨 좋네요. 나가 놀아요")
+elif temp<=10 and temp>0: #또는 바로 0<temp<10으로 쓸 수 있다.
+    print("쌀쌀하네요. 외투를 챙겨요.")
+else:
+    print("너무 추워요. 나가지 말아요.")
 
 #for (반복문) 반복 횟수가 명확할 때 사용됩니다. 리스트, 튜플, 문자열 같은 시퀀스 자료형을 순회할 때 많이 사용하죠.
 print("대기번호: 1")
@@ -57,36 +57,36 @@ for customers in starbucks:
     print("{0}님 커피 나왔습니다.".format(customers))
 
 #while (조건을 만족한다면 계속 반복) 반복 횟수가 명확하지 않거나 조건에 따라 반복을 멈춰야 할 때 사용됩니다. 무한 루프를 생성하거나, 특정 조건을 만족할 때까지 반복해야 하는 경우에 적합합니다.
-# customers="토르"
-# 횟수= 5
-# while 횟수>=1:
-#     print("{0}님, 커피 나왔습니다. {1}번 남았어요.".format(customers,횟수))
-#     횟수-=1
-# if 횟수<1:
-#     print("커피는 폐기 처리되었습니다.")
+customers="토르"
+횟수= 5
+while 횟수>=1:
+    print("{0}님, 커피 나왔습니다. {1}번 남았어요.".format(customers,횟수))
+    횟수-=1
+if 횟수<1:
+    print("커피는 폐기 처리되었습니다.")
 
-# customers="토르"
-# index=1
-# while True: #무한 루프
-#     print("{0}님, 커피 나왔습니다. {1}번 불렀습니다.".format(customers,index))
-#     index+=1
+customers="토르"
+index=1
+while True: #무한 루프
+    print("{0}님, 커피 나왔습니다. {1}번 불렀습니다.".format(customers,index))
+    index+=1
 
-# customer="토르"
-# person="Unknown"
-# while person != customer:
-#     print("{0}님, 커피 나왔습니다.".format(customer))
-#     person=input("성함이 어떻게 되세요?")
+customer="토르"
+person="Unknown"
+while person != customer:
+    print("{0}님, 커피 나왔습니다.".format(customer))
+    person=input("성함이 어떻게 되세요?")
 
-#continue와 break
-# absent=[2,5] #결석
-# no_book=[13,17]
-# for students in range(1,21):
-#     if students in absent:
-#         continue #만족한다면 밑의 실행문을 건너뛴다.
-#     elif students in no_book:
-#         print("오늘 수업은 끝 {0}는 교무실로 와".format(no_book))
-#         break # 아예 실행을 종료료
-#     print("{0}이 발표하자.".format(students))
+# continue와 break
+absent=[2,5] #결석
+no_book=[13,17]
+for students in range(1,21):
+    if students in absent:
+        continue #만족한다면 밑의 실행문을 건너뛴다.
+    elif students in no_book:
+        print("오늘 수업은 끝 {0}는 교무실로 와".format(no_book))
+        break # 아예 실행을 종료료
+    print("{0}이 발표하자.".format(students))
     
 # 한 줄 for / 임마는 리스트임 따라서[]랑 같이 씀 하지만 그냥 for와는 다르게 한 줄 for은 단독으로 사용하는 것은 불가능. 또한 이 변수를 활용하려면 in 뒤의 변수를 활용한다.
 students=[1,2,3,4,5]
@@ -105,19 +105,19 @@ print(students)
 
 #함수 def
 
-# def deposit(balance,money): #입금
-#     print("입금이 완료되었습니다. 잔액은 {0}원입니다.".format(balance+money))
-#     return balance+money #이게 deposit의 값이 되고 따라서 balance의 값도 1010 print(balance)의 값도 1010이 된다.
-# balance=0
-# balance=deposit(balance,1000)
-# print(balance)
+def deposit(balance,money): #입금
+    print("입금이 완료되었습니다. 잔액은 {0}원입니다.".format(balance+money))
+    return balance+money #이게 deposit의 값이 되고 따라서 balance의 값도 1010 print(balance)의 값도 1010이 된다.
+balance=0
+balance=deposit(balance,1000)
+print(balance)
 
-# def deposit(balance,money): #입금(다른 예시)
-#     print("입금이 완료되었습니다. 잔액은 {0}원입니다.".format(balance+money))
-#     return balance+money 
-# balance=0
-# money=deposit(balance,1000)
-# print(money) #여기서도 똑같이 money로 바꾸면 리턴의 발란스+돈의 값을 디포짓이 받고 그 값이 돈과 같다고 했으니 돈을 출력하면 1000이 나온다.
+def deposit(balance,money): #입금(다른 예시)
+    print("입금이 완료되었습니다. 잔액은 {0}원입니다.".format(balance+money))
+    return balance+money 
+balance=0
+money=deposit(balance,1000)
+print(money) #여기서도 똑같이 money로 바꾸면 리턴의 발란스+돈의 값을 디포짓이 받고 그 값이 돈과 같다고 했으니 돈을 출력하면 1000이 나온다.
 
 #ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 def deposit(balance,money): #입금
@@ -193,21 +193,21 @@ profile("유재석", 45,"c","c++","c#")
 #지역변수(함수 내에서만 쓸 수 있다.)와 전역변수(프로그램 내에 어디서든 쓸 수 있다.)
 
 #지역변수 
-# gun=10
-# def checkpoint(soldiers):
-#     gun=20
-#     print("남은 총:{0}자루.".format(gun-soldiers))# 함수 내부의 문장은 외부의 변수를 쓸 수 없음 따라서 내부에 안 만들면 오류 뜸.
-# print("전체 총:{0}".format(gun)) #함수 외부임(띄어쓰기 없쥬??) 따라서 함수 외부인 총=10을 따름
-# checkpoint(2)
-# print("총:{0}".format(gun))#야도 외부인 건 마찬가지.
+gun=10
+def checkpoint(soldiers):
+    gun=20
+    print("남은 총:{0}자루.".format(gun-soldiers))# 함수 내부의 문장은 외부의 변수를 쓸 수 없음 따라서 내부에 안 만들면 오류 뜸.
+print("전체 총:{0}".format(gun)) #함수 외부임(띄어쓰기 없쥬??) 따라서 함수 외부인 총=10을 따름
+checkpoint(2)
+print("총:{0}".format(gun))#야도 외부인 건 마찬가지.
 
-#전역변수
-# gun=10
-# def checkpoint(soldiers):
-#     global gun
-#     gun=gun-soldiers
-#     print("남은 총:{0}".format(gun))
-# checkpoint(2)
+전역변수
+gun=10
+def checkpoint(soldiers):
+    global gun
+    gun=gun-soldiers
+    print("남은 총:{0}".format(gun))
+checkpoint(2)
 
 #체크포인트 리턴
 
@@ -234,9 +234,9 @@ for num in range(1,21):
    # print("대기번호:"+str(num).zfill(3)) #3칸을 만들고 빈 공간에는 0으로 채운다.
     print("대기번호:{0}".format(str(num).zfill(3))) #zfill이 문자 메서드 따라서 str을 num에 붙인다.
 #표준입력
-# ans=input("아무 말이나 해보든가.")
-# print("넌 {0}라고 했구나.".format(ans)) # input의 값은 숫자든 문자든 다 str, 즉 문자형태로 나온다.
-# print(type(ans))
+ans=input("아무 말이나 해보든가.")
+print("넌 {0}라고 했구나.".format(ans)) # input의 값은 숫자든 문자든 다 str, 즉 문자형태로 나온다.
+print(type(ans))
 
 #다양한 출력포멧
 
@@ -306,7 +306,7 @@ with open("profile","rb") as profile_file:
     print(pickle.load(profile_file))
 
 with open("study","w",encoding="utf8") as study_file:
-    study_file.write("파이썬을 공부하다.")
+    print("파이썬을 공부하다.", file=study_file)
 
 with open("study", "r", encoding="utf8") as study_file:
     print(study_file.read())
@@ -315,62 +315,62 @@ with open("profile", "rb") as profile_file:
     print(pickle.load(profile_file))
 
 #클래스
-#마린: 공격 유닛, 군인, 총 씀
-# name="마린"
-# hp=40
-# damage=5
-# print("{0}유닛이 생성되었습니다.".format(name))
-# print("체력:{0}\n공격력:{1}".format(hp, damage))
+# 마린: 공격 유닛, 군인, 총 씀
+name="마린"
+hp=40
+damage=5
+print("{0}유닛이 생성되었습니다.".format(name))
+print("체력:{0}\n공격력:{1}".format(hp, damage))
 
-# #탱크:공격 유닛, 탱크, 포를 씀, 일반 모드/ 시즈 모드 
-# name_tank="탱크"
-# hp_tank=150
-# damage_tank=30
-# print("{0}유닛이 생성되었습니다.".format(name_tank))
-# print("체력:{0}\n공격력:{1}".format(hp_tank, damage_tank))
+#탱크:공격 유닛, 탱크, 포를 씀, 일반 모드/ 시즈 모드 
+name_tank="탱크"
+hp_tank=150
+damage_tank=30
+print("{0}유닛이 생성되었습니다.".format(name_tank))
+print("체력:{0}\n공격력:{1}".format(hp_tank, damage_tank))
 
-# import sys
-# def attack(name, location, damage):
-#     print("{0}:{1}시 방향으로 적군을 향해 공격합니다.[공격력:{2}]".format(name , location, damage))
-# location=int(input("마린, 몇 시 방향을 공격하시겠습니까?"))
-# if location>24:
-#     print("다시 입력해주세요.")
-#     sys.exit()
-# attack(name, location, damage )
+import sys
+def attack(name, location, damage):
+    print("{0}:{1}시 방향으로 적군을 향해 공격합니다.[공격력:{2}]".format(name , location, damage))
+location=int(input("마린, 몇 시 방향을 공격하시겠습니까?"))
+if location>24:
+    print("다시 입력해주세요.")
+    sys.exit()
+attack(name, location, damage )
 
-# location=int(input("탱크, 몇 시 방향을 공격하시겠습니까?"))
-# if location>24:
-#     print("다시 입력해주세요.")
-#     sys.exit()
+location=int(input("탱크, 몇 시 방향을 공격하시겠습니까?"))
+if location>24:
+    print("다시 입력해주세요.")
+    sys.exit()
 
-# attack(name_tank, location, damage_tank) #이거 넘 번거로움 따라서 클래스가 있음.
+attack(name_tank, location, damage_tank) #이거 넘 번거로움 따라서 클래스가 있음.
 
-#클래스는 붕어빵 틀과 같이 만들어 내는 것.-----------------------------------------이건 좀 더 알아보고 공부하기
+# 클래스는 붕어빵 틀과 같이 만들어 내는 것.-----------------------------------------이건 좀 더 알아보고 공부하기
 # class 
-# class unit: #여기선 unit이 함수를 부를 때 사용된다.
-#     def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
-#         self.name=name
-#         self.hp=hp
-#         self.damage=damage
-#         print("{0}유닛이 생성되었습니다.".format(self.name))
-#         print("체력:{0}, 공격력:{1}".format(self.hp, self.damage))
+class unit: #여기선 unit이 함수를 부를 때 사용된다.
+    def __init__(self, name, hp, damage): # __init__은 생성하겠다는 것 객체는 마린, 탱크같은 것.
+        self.name=name
+        self.hp=hp
+        self.damage=damage
+        print("{0}유닛이 생성되었습니다.".format(self.name))
+        print("체력:{0}, 공격력:{1}".format(self.hp, self.damage))
 
-# marine1= unit("마린", 40, 5) #객체는 __init__ 뒤에 있는 함수 모두를 포함해야 한다.(self제외)
-# marine2= unit("마린", 40, 5)
-# tank= unit("탱크", 150, 35)
+marine1= unit("마린", 40, 5) #객체는 __init__ 뒤에 있는 함수 모두를 포함해야 한다.(self제외)
+marine2= unit("마린", 40, 5)
+tank= unit("탱크", 150, 35)
 
-# #멤버 변수(self.name=name, self.hp=hp 이런것들 class내의 것을 외부에서 쓴다.)
+#멤버 변수(self.name=name, self.hp=hp 이런것들 class내의 것을 외부에서 쓴다.)
 
-# #레이스: 공중 유닛, 비행기, 스텔스
-# wraith1= unit("레이스", 80, 5)
-# print("유닛 이름:{0}, 공격력:{1}".format(wraith1.name, wraith1.damage)) #함수를 부르는 게 아닌 클래스 함수 내 변수를 이용한다.  
+#레이스: 공중 유닛, 비행기, 스텔스
+wraith1= unit("레이스", 80, 5)
+print("유닛 이름:{0}, 공격력:{1}".format(wraith1.name, wraith1.damage)) #함수를 부르는 게 아닌 클래스 함수 내 변수를 이용한다.  
 
-# #마인드 컨트롤 : 상대방 유닛을 내것으로 만든다. (빼앗음)
-# wraith2=unit(" 빼앗은 레이스", 80, 5)
-# wraith2.clocking=True #클래스 외부에서 내부의 변수를 확장했다.(name)
+#마인드 컨트롤 : 상대방 유닛을 내것으로 만든다. (빼앗음)
+wraith2=unit(" 빼앗은 레이스", 80, 5)
+wraith2.clocking=True #클래스 외부에서 내부의 변수를 확장했다.(name)
 
-# if wraith2.clocking== True:
-#     print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
+if wraith2.clocking== True:
+    print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
 
 #메소드(일반 유닛) 
 class unit: #여기선 unit이 함수를 부를 때 사용된다.
@@ -644,120 +644,120 @@ class buildingunit(unit):
 
 
 #예외처리
-# try:
-#     print("나누기 전용 계산기")
-#     num=[]
-#     num.append(int(input("첫번째 숫자를 입력하시오.")))
-#     num.append(int(input("두번째 숫자를 입력하시오.")))
-#     num.append("{0}".format(num[0]/num[1]))
-#     print("{0}".format(num[0]/num[1]))
-# except ValueError:
-#     print("숫자를 적으시오.")
-# except ZeroDivisionError:
-#     print("0으로 못 나눈다.")
-# except:
-#     print("알 수 없는 오류 발생") #저 두 가지 오류 외의 것을 다룬다.
+try:
+    print("나누기 전용 계산기")
+    num=[]
+    num.append(int(input("첫번째 숫자를 입력하시오.")))
+    num.append(int(input("두번째 숫자를 입력하시오.")))
+    num.append("{0}".format(num[0]/num[1]))
+    print("{0}".format(num[0]/num[1]))
+except Error:
+    print("숫자를 적으시오.")
+except ZeroDivisionError:
+    print("0으로 못 나눈다.")
+except:
+    print("알 수 없는 오류 발생") #저 두 가지 오류 외의 것을 다룬다.
 
 #에러 발생시키기.
-# try:
-#     print("한 자리 숫자 전용 계산기")
-#     num1=int(input("숫자를 입력하세요."))
-#     num2=int(input("숫자를 입력하세요."))
-#     if num1>9 or num2>9:
-#         raise ValueError #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
-#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
-# except ValueError: #오류가 났을 때 이것을 실행한다.
-#     print("잘못된 값을 입력했습니다.")
+try:
+    print("한 자리 숫자 전용 계산기")
+    num1=int(input("숫자를 입력하세요."))
+    num2=int(input("숫자를 입력하세요."))
+    if num1>9 or num2>9:
+        raise ValueError #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
+    print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+except ValueError: #오류가 났을 때 이것을 실행한다.
+    print("잘못된 값을 입력했습니다.")
 
 #사용자 정의 예외 처리(위의 것들은 이미 있는 에러 처리임 이건 없는 걸 사용자가 직접 정의한다.) 여기선 bignumberError
 #1-1 여기선 밸류오류에서 아무 변수를 안 부르니 바로 int를 붙여도 된다.
-# class bignumberError(Exception): #exception이 사용자 예외 처리를 쓴다는 의미이다.
-#     def __init__(self,m):
-#         self.m=m
+class bignumberError(Exception): #exception이 사용자 예외 처리를 쓴다는 의미이다.
+    def __init__(self,m):
+        self.m=m
     
-#     def __str__(self):
-#         return self.m
+    def __str__(self):
+        return self.m
 
-# try:
-#     print("한 자리 숫자 전용 계산기")
-#     num1=int(input("숫자를 입력하세요."))
-#     num2=int(input("숫자를 입력하세요."))
+try:
+    print("한 자리 숫자 전용 계산기")
+    num1=int(input("숫자를 입력하세요."))
+    num2=int(input("숫자를 입력하세요."))
 
     
     
-#     if num1>9 or num2>9:
-#         raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
-#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
-# except bignumberError as err: #오류가 났을 때 이것을 실행한다.
-#     print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
-#     print(err)
-# except ValueError: #오류가 났을 때 이것을 실행한다.
-#     print("잘못된 값을 입력했습니다.")
+    if num1>9 or num2>9:
+        raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다.
+    print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+except bignumberError as err: #오류가 났을 때 이것을 실행한다.
+    print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
+    print(err)
+except ValueError: #오류가 났을 때 이것을 실행한다.
+    print("잘못된 값을 입력했습니다.")
 
 #1-2 여기선 밸류에러에 초기값을 부르는데 초기값에서 int를 input에 붙이고 문자를 쓰면 바로 오류가 나 문자가 저장되진 않는다. 즉, 초기값이 없다는 뜻이다. 근데 밸류오류에선 부르고 있으니 그냥 코드가 실행되지 않는다.
-# class bignumberError(Exception):
-#     def __init__(self,m):
-#         self.m=m
+class bignumberError(Exception):
+    def __init__(self,m):
+        self.m=m
     
-#     def __str__(self): #Exception은 기본적으로 str을 갖고 있어 이건 없어도 되지만 기억은 해둘 것. str은은 bignumberError를 부를 때 처름부터 같이 나옴. 
-#         return self.m
+    def __str__(self): #Exception은 기본적으로 str을 갖고 있어 이건 없어도 되지만 기억은 해둘 것. str은은 bignumberError를 부를 때 처름부터 같이 나옴. 
+        return self.m
 
 
-# try:
-#     print("한 자리 숫자 전용 계산기")
-#     num1=(input("숫자를 입력하세요."))
-#     num2=(input("숫자를 입력하세요."))
+try:
+    print("한 자리 숫자 전용 계산기")
+    num1=(input("숫자를 입력하세요."))
+    num2=(input("숫자를 입력하세요."))
     
-#     num1=int(num1)
-#     num2=int(num2)
+    num1=int(num1)
+    num2=int(num2)
 
 
-#     if num1>9 or num2>9:
-#         raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다고 클래스의 exception에서 정의하고 bignumberError 함수를 부른다. 
-#     print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
-# except bignumberError as err: #init에 저장한 것을 불러온다.
-#     print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
-#     print(err) # bignumberError의 ()안을 출력한다.
-# except ValueError: #오류가 났을 때 이것을 실행한다.
-#     print("잘못된 값을 입력했습니다. 입력값:{0}, {1}".format(num1,num2))
-# #finally(예외 구문에서 실행이 되건 오류가 나건 무조건 실행된다.)
-# finally:
-#     print("이용해주셔서 감사합니다.")
+    if num1>9 or num2>9:
+        raise bignumberError("입력값:{0},{1}".format(num1,num2)) #잘못된 값을 입력했을 때 의도적으로 오류를 발생 시킨다고 클래스의 exception에서 정의하고 bignumberError 함수를 부른다. 
+    print("{0}".format(num1/num2)) #오류로 실행되지 않는다.
+except bignumberError as err: #init에 저장한 것을 불러온다.
+    print("잘못된 값을 입력했습니다. 한 자리 숫자만 입력해주세요.")
+    print(err) # bignumberError의 ()안을 출력한다.
+except ValueError: #오류가 났을 때 이것을 실행한다.
+    print("잘못된 값을 입력했습니다. 입력값:{0}, {1}".format(num1,num2))
+#finally(예외 구문에서 실행이 되건 오류가 나건 무조건 실행된다.)
+finally:
+    print("이용해주셔서 감사합니다.")
 
 #-----------------------------------------------------------------------------------------------------------------------------
  
 #모듈(필요한 파일끼리 부품처럼 만들어진 것, 필요한 것만 고칠 수 있으며, 같은 언어끼리만 가능하다. ex)python) 파일 뒤에 .py붙여진 것것
-# import theater_modeule
-# theater_modeule.price(3)
-# theater_modeule.price_moring(4)
-# theater_modeule.price_soldier(5)
+import theater_modeule
+theater_modeule.price(3)
+theater_modeule.price_moring(4)
+theater_modeule.price_soldier(5)
 
-# import theater_modeule as mv #별명을 붙여 쉽게 쓴다.
-# mv.price_soldier(10)
+import theater_modeule as mv #별명을 붙여 쉽게 쓴다.
+mv.price_soldier(10)
 
-# from theater_modeule import* #그냥 모든 것을 쓰겠다는 의미.
-# price_soldier(9)
+from theater_modeule import* #그냥 모든 것을 쓰겠다는 의미.
+price_soldier(9)
 
-# from theater_modeule import price, price_moring #이 두 개만 쓰라는 의미.
-# price(3)
-# price_moring(2)
-# #price_soldier(5) 이건 오류남.
+from theater_modeule import price, price_moring #이 두 개만 쓰라는 의미.
+price(3)
+price_moring(2)
+#price_soldier(5) 이건 오류남.
 
 from theater_modeule import price_soldier as sd #이것도 별명을 붙인다.
 sd(3) 
 
 # #패키지(모듈들을 모아놓은 집합.)
-# import Travel.Thailand #여기는 파일이나 폴더만 가능하고 클래스나 함수는 불러올 수 없다.
-# trip_to= Travel.Thailand.ThailandPackage()
-# trip_to.detail() 
+import Travel.Thailand #여기는 파일이나 폴더만 가능하고 클래스나 함수는 불러올 수 없다.
+trip_to= Travel.Thailand.ThailandPackage()
+trip_to.detail() 
 
-# from Travel.Thailand import ThailandPackage #이거는 클래스를 불러올 수 있다.
-# trip_to=ThailandPackage()
-# trip_to.detail()
+from Travel.Thailand import ThailandPackage #이거는 클래스를 불러올 수 있다.
+trip_to=ThailandPackage()
+trip_to.detail()
 
-# from Travel.Vietnam import VietnamPackage
-# trip_to=VietnamPackage()
-# trip_to.detail()
+from Travel.Vietnam import VietnamPackage
+trip_to=VietnamPackage()
+trip_to.detail()
 
 # __all__ (import*를 쓸 때 사용할 모듈을 정하는 것.)
 from Travel import* #from을 쓰면 폴더는 코드에 안 적네.
@@ -768,7 +768,7 @@ trip_to.detail()
 
 #모듈 직접 실행.(타일랜드 파일 참조)
 
-#패키지, 모듈 위치.
+#패키지, 모듈 위치. __all__에 있어야 실행가능하다.
 import inspect
 print(inspect.getfile(Thailand)) #이러면 파일 위치를 출력값으로 알려준다.
 print(inspect.getfile(Vietnam))
@@ -796,14 +796,14 @@ print(glob.glob("*.py")) #확장자가 .py인 모든 파일
 import os 
 print(os.getcwd()) #현재 폴더 알려줌
 
-# folder= "sample_dir"
-# if os.path.exists(folder):
-#     print("이미 존재하는 폴더입니다.")
-#     os.rmdir(folder)
-#     print("{0} 폴더를 삭제하였습니다.".format(folder))
-# else:
-#     os.makedirs(folder)
-#     print("{0} 폴더를 생성하였습니다.".format(folder))
+folder= "sample_dir"
+if os.path.exists(folder):
+    print("이미 존재하는 폴더입니다.")
+    os.rmdir(folder)
+    print("{0} 폴더를 삭제하였습니다.".format(folder))
+else:
+    os.makedirs(folder)
+    print("{0} 폴더를 생성하였습니다.".format(folder))
 
 print(os.listdir())
 
